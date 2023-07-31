@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+*{
+box-sizing: border-box;
+font-family:  'Poppins', sans-serif;
+overflow: auto;
+padding: 0;
+}
+:root{
+    --white-color: #fff;
+    --header-color: #1e2022;
+    --black-color: #000;
+    --linear-gradient: linear-gradient(90deg,#4e54c8, #222831  );
+} 
+/* #4e54c8, */
+body{
+    background: #343d4b;
+    position: relative;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: var(--header-color);
+    font-size: 3rem;
+}
+h1{
+    color : #222831;
+    font-weight: bold;
+}
+input{
+    width: 500px;
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    text-align: left;
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    outline: none;
+}
+.weather-wrapper{
+    display: flex;
+    position: relative;
+    
+}
+.weather-container, .weather-container-2{
+    height: 650px;
+    width: 500px;
+    background-color: var(--white-color);
+    margin-top: 50px;
+    border-radius: 50px; 
+    position: relative;
+    
+}
+.weather-container h2{
+    color: var(--white-color);
+}
+    .weather-container {
+        z-index: 1;
+        position: relative;
+        left: 70px;
+        height: 670px;
+        bottom: 10px;
+        background-image: url(https://e1.pxfuel.com/desktop-wallpaper/610/969/desktop-wallpaper-beautiful-rain-cool-rainy.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+      }
+      
+      .weather-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(-45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+        z-index: -1; 
+      }
+      
+      /* Add an additional div for the content and style it as needed */
+      .weather-content {
+        position: relative;
+        z-index: 1; 
+        color: white; 
+        font-weight: bold; 
+        padding: 20px;
+        font-size: 1.5rem; 
+      }
+      .feather{
+        font-size: 1.5rem;
+      }
+  
+.weather-container-2{
+    background-color: #222831;;
+    width: 700px;
+    position: relative;
+    
+}
+.weather-container-2 h3{
+   text-transform: uppercase;
+    margin-left: 8rem;
+    color: var(--white-color);
+    position: relative;
+    top: 3rem;
+   
+}
+.weather-container-2 span{
+  position: absolute;
+  left: 80%;
+}
+.svg-container{
+    background-color:  #262d36;;
+    height: 220px;
+    width: 70%;
+    margin-left: 8rem;
+    margin-top: 5rem;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.svg-container div{
+   
+    padding: 2.5rem;
+    overflow: hidden;
+}
+.svg-container i{
+    font-size: 2rem;;
+}
+.svg-container h4{
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--white-color);
+}
+.fa-cloud-showers-heavy{
+    color: #008AD7
+}
+.fa-sun{
+    color: #FDB813;
+}
+.fa-cloud-bolt{
+color: #7DF9FF;
+}
+.fa-cloud{
+    color: #bdd0e7
+}
+.svg-container h5{
+    font-size: 1.5rem;
+    color: var(--white-color);
+    text-align: center;
+}
+#cloud{
+    height: 100%;
+    background-color: #5f5e5e; 
+    overflow: hidden;
+    border-radius: 20px;
+    margin-left: -2rem;
+}
+/* .svg-container div:hover{
+    background-color: #5f5e5e; 
+    height: 100%; 
+    border-radius: 20px;
+    transform: scale(1.1);
+} */
+#bolt{
+ margin-left: 1rem;
+}
+button{
+    display: block;
+    margin: auto;
+    width: 500px;
+    padding: 20px;
+    position: absolute;
+    left: 120px;
+    bottom: 70px;
+    background: linear-gradient(-45deg, #4e54c8, #8089ff);
+    color: var(--white-color);
+    font-size: 1rem;
+    border-radius: 50px;
+    border: none;
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+h5 i{
+margin-top: 5rem;
+color: var(--white-color);
+}
+#sun{
+    color: var(--white-color);
+    font-size: 5rem;
+}
+/* .weather-content h2{
+   
+} */
+.weather-content h6{
+    margin-top: 5rem;
+    font-size: 3rem;
+}
