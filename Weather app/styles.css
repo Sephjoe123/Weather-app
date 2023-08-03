@@ -16,6 +16,7 @@ padding: 0;
 body{
     background: #343d4b;
     position: relative;
+    font-family: 'Poppins';
 }
 .container{
     display: flex;
@@ -28,8 +29,9 @@ h1{
     font-size: 3rem;
 }
 h1{
-    color : #222831;
+    color : var(--white-color);
     font-weight: bold;
+    font-size: 2.5rem;
 }
 input{
     width: 500px;
@@ -40,6 +42,7 @@ input{
     padding-left: 2rem;
     font-size: 1.2rem;
     outline: none;
+    margin-top: 1rem;
 }
 .weather-wrapper{
     display: flex;
@@ -78,10 +81,10 @@ input{
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(-45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+        background: linear-gradient(-45deg, rgba(41, 41, 41, 0.5), rgba(6, 103, 248, 0.9));
         z-index: -1; 
       }
-      
+     
       /* Add an additional div for the content and style it as needed */
       .weather-content {
         position: relative;
@@ -113,45 +116,38 @@ input{
   position: absolute;
   left: 80%;
 }
-.svg-container{
+#svg-container{
     background-color:  #262d36;;
-    height: 220px;
+    height: 300px;
     width: 70%;
     margin-left: 8rem;
-    margin-top: 5rem;
+    margin-top: 7rem;
     display: flex;
     position: relative;
     justify-content: center;
     overflow: hidden;
     border-radius: 20px;
 }
-.svg-container div{
-   
-    padding: 2.5rem;
+#svg-container div{
+    padding: 2rem;
     overflow: hidden;
+    text-align: center;
+
 }
-.svg-container i{
-    font-size: 2rem;;
+#svg-container img{
+    margin-left: -1rem;
+    width: 100px;
 }
-.svg-container h4{
+
+#svg-container h4{
     font-size: 0.8rem;
     text-align: center;
     color: var(--white-color);
 }
-.fa-cloud-showers-heavy{
-    color: #008AD7
-}
-.fa-sun{
-    color: #FDB813;
-}
-.fa-cloud-bolt{
-color: #7DF9FF;
-}
-.fa-cloud{
-    color: #bdd0e7
-}
-.svg-container h5{
-    font-size: 1.5rem;
+
+
+#svg-container h5{
+    font-size: 1.8rem;
     color: var(--white-color);
     text-align: center;
 }
@@ -162,30 +158,45 @@ color: #7DF9FF;
     border-radius: 20px;
     margin-left: -2rem;
 }
-/* .svg-container div:hover{
-    background-color: #5f5e5e; 
-    height: 100%; 
-    border-radius: 20px;
-    transform: scale(1.1);
-} */
+
 #bolt{
  margin-left: 1rem;
 }
 button{
     display: block;
     margin: auto;
-    width: 500px;
-    padding: 20px;
+    width: 300px;
+    padding: 5px;
     position: absolute;
-    left: 120px;
-    bottom: 70px;
+    left: 35%;
+    bottom: 20px;
     background: linear-gradient(-45deg, #4e54c8, #8089ff);
     color: var(--white-color);
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-radius: 50px;
     border: none;
+    transition: 0.5 ease-in;
 }
-
+.error-container{
+    width: 350px;
+    padding:  15px;
+    background-color:  #FF9494;
+    text-align: center;
+    border-radius: 10px;
+    color: #fff;
+    display: none;
+}
+.increase-size{
+    font-size: 50px;
+}
+.weather-prediction{
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    padding-top: 15px;
+    font-size: 1.3rem;
+    color: var(--white-color);
+}
 button:hover{
     transform: scale(1.05);
 }
@@ -193,14 +204,36 @@ h5 i{
 margin-top: 5rem;
 color: var(--white-color);
 }
-#sun{
-    color: var(--white-color);
-    font-size: 5rem;
+
+
+.weather-content{
+    position: relative;
 }
-/* .weather-content h2{
-   
-} */
 .weather-content h6{
-    margin-top: 5rem;
-    font-size: 3rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+.city{
+    position: absolute;
+    left: 90px;
+    top: 210px;
+    font-size: 1.8rem;
+}
+#date-text{
+    padding-top: 20px;
+}
+.temp-degree{
+    font-size: 3.5rem;
+}
+.temp-description{
+ font-size: 1.1rem;
+
+}
+.description{
+    display: flex;
+    flex-direction: column;
+
+}
+#weather-icon{
+    width: 150px;
 }
