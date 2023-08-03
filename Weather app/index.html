@@ -11,17 +11,25 @@
 <body>
     <div class="container">
         <h1>
-            Weather in   
+            Enter City Name
         </h1>
-      <input type="text" placeholder="Search a location...">
+        <div class="error-container">
+         Please enter a correct city Name
+        </div>
+      <input id ="location" type="text" placeholder="Search a location...">
+     
         <div class="weather-wrapper">
             <div class="weather-container">
                 <div class="weather-content">
-                    <h2>
-                        Saturday
-                        <br>
-                        30th July, 2023
-                       </h2>
+                    <h2 id = "date-text" >
+                       
+                    <span id = "current-day">
+                        
+                    </span>  
+                      <br>
+                      
+
+                    <span id = "Month-and-Year">  </span>  
 
                        <h4>
                         <span>
@@ -30,55 +38,70 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="55" height="50" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
                          class="feather feather-map-pin location-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" 
-                         cy="10" r="3"></circle></svg> 
+                         cy="10" r="3"></circle></svg> <span class = "city">
+                            Lagos
+                         </span>
                            
                          
                     
                         </h4>
                        <h5>
-                        <i id = "sun" class="fa-sharp fa-solid fa-sun"></i>
+                      <img id = "weather-icon" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+
                        </h5>
 
-                       <h6>
-                        32° Sunny
+                       <h6 class = "description">
+                       <span class = "temp-degree"> 32°C</span>
+                        <span class = "temp-description">
+                            Raining
+                        </span>
+                        
+                        
                        </h6>
                 </div>
              
             </div>
             <div class="weather-container-2">
                 <h3>
-                  Precipitation               <span> 0%
+                               <span> 0%
 
                   </span>
                 </h3>
-            <h3>
-                humidity <span> 34%</span>
+            <h3 >
+                humidity <span class ="humidity" > 34%</span>
             </h3>
 
-            <h3>
-                Latitude  <span>
+            <h3 >
+                Latitude  <span class = "lat">
                     51°
                 </span>
             </h3>
 
-            <h3>
-                Longitude <span> 30°</span>   
+            <h3 >
+                Longitude <span class = "long"> 30°</span>   
             </h3>
-          
-            <div class="svg-container">
-                <div id = "cloud">
-                    <i class="fa-solid fa-cloud"></i>
-                    <h4>
-                        Thu
+
+         
+            <div class = "weather-prediction">
+                <h4>
+                    4-DAY FORECAST
+                      </h4>
+            </div>
+            <div id ="svg-container">
+               
+                <div  class = "icons">
+                    <img class = "weather-forecast-icon" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+                    <h4 class = "Today">
+                        Today
                     </h4>
                     <h5>
                         29°
                     </h5>
                 </div>
                 
-               <div id = "showers">
-                <i class="fa-solid fa-cloud-showers-heavy"></i>
-                <h4>
+               <div class = "icons">
+                <img class = "weather-forecast-icon-1" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+                <h4 class = "day-2">
                     Tue
                 </h4>
                 <h5>
@@ -86,9 +109,9 @@
                 </h5>
                </div>
                 
-              <div id = "rain">
-                <i class="fa-solid fa-sun"></i>
-                <h4>
+              <div  class = "icons">
+                <img class = "weather-forecast-icon-2" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+                <h4 class = "day-3">
                     Wed
                 </h4>
                 <h5>
@@ -96,9 +119,9 @@
                 </h5>
               </div>
                 
-               <div id ="bolt" >
-                <i class="fa-solid fa-cloud-bolt"></i>
-                <h4>
+               <div  class = "icons" >
+                <img class = "weather-forecast-icon-3" src="http://openweathermap.org/img/wn/04d@2x.png" alt="">
+                <h4 class = "day-4">
                     Fri
                 </h4>
                 <h5>
@@ -109,7 +132,7 @@
                 
             </div>
             <button>
-                Change Location 
+                My Location
             </button>
             </div>
            
@@ -119,5 +142,6 @@
        
         </div>
     </div>
+    <script src = "script.js"></script>
 </body>
 </html>
