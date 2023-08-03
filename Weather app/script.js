@@ -8,7 +8,21 @@ const temperatureDegree = document.querySelector(".temp-degree");
 const temperatureDescription = document.querySelector(".temp-description");
 const latElement = document.querySelector(".lat");
 const longElement = document.querySelector(".long");
-const errorContainer = document.querySelector(".error-container")
+
+const day1 = document.querySelector("day-1");
+const day2 = document.querySelector("day-2");
+const day3 = document.querySelector("day-3");
+const day4 = document.querySelector("day-4");
+
+const daysOfTheWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 const apiKey = "d2ac27d2600f53d53f942008d727564f";
 let lat;
@@ -22,6 +36,9 @@ function getCurrentDateDetails() {
 
   presentDay.innerText = getDay;
   monthAndYear.innerText = getMonthAndYear;
+
+  const dayNumber = currentDate.getDay();
+  const WeekDay = daysOfTheWeek[dayNumber];
 }
 
 function getLocationAndFetchWeatherData() {
@@ -39,8 +56,8 @@ function AccessedLocation(position) {
 }
 
 function fetchWeatherData(lat, long) {
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
-  getWeatherDetailsFromApi(weatherUrl);
+  const weatherByLocationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
+  getWeatherDetailsFromApi(weatherByLocationUrl);
 }
 
 async function getWeatherDetailsFromApi(weatherUrl) {
@@ -50,10 +67,9 @@ async function getWeatherDetailsFromApi(weatherUrl) {
       throw new Error("Weather data not available for this location");
     }
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     displayData(data);
   } catch (error) {
-    console.error(error);
     displayError(Error);
   }
 }
@@ -80,23 +96,17 @@ function displayData(data) {
 }
 
 function displayError(Err) {
-  
-  if(Err = "Weather data not available for this location"){
-    errorContainer.style.display = "block"
+  if ((Err = "Weather data not available for this location")) {
+    errorContainer.style.display = "block";
 
-    setTimeout(()=>{
-      if(errorContainer.style.display = "block"){
-        errorContainer.style.display = "none"
+    setTimeout(() => {
+      if ((errorContainer.style.display = "block")) {
+        errorContainer.style.display = "none";
         let inputValue = input.value;
       }
-    
-    },3000)
-
- 
+    }, 3000);
   }
-  
- }
-
+}
 
 // Initial setup
 getCurrentDateDetails();
@@ -104,8 +114,29 @@ getLocationAndFetchWeatherData();
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     const inputValue = input.value;
-    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}`;
-    getWeatherDetailsFromApi(weatherUrl);
-    dailyForecast()
+    const wweatherByCityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}`;
+    const WeatherForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${inputValue}&appid=${apiKey}`;
+
+    getWeatherDetailsFromApi(wweatherByCityUrl);
+    dailyForecast(WeatherForecast);
   }
 });
+
+async function dailyForecast(WeatherForecast) {
+  try {
+    const response = await fetch(WeatherForecast);
+    if (!response.ok) {
+      throw new Error("Cannot access data in this location");
+    }
+    let data = await response.json();
+    console.log(data);
+    displayForecast(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function displayForecast(data) {
+  let dailyForecastArray = data.list;
+  let DateTxt = data.list[0].dt_txt;
+}
