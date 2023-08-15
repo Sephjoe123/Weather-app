@@ -150,6 +150,7 @@ input{
     font-size: 1.8rem;
     color: var(--white-color);
     text-align: center;
+    overflow: hidden;
 }
 #cloud{
     height: 100%;
@@ -177,7 +178,7 @@ button{
     border: none;
     transition: 0.5 ease-in;
 }
-.error-container{
+.error-container,.fetching-details{
     width: 350px;
     padding:  15px;
     background-color:  #FF9494;
@@ -185,6 +186,9 @@ button{
     border-radius: 10px;
     color: #fff;
     display: none;
+}
+.fetching-details{
+    background-color: rgb(25, 135, 84);
 }
 .increase-size{
     font-size: 50px;
@@ -200,6 +204,7 @@ button{
 button:hover{
     transform: scale(1.05);
 }
+
 h5 i{
 margin-top: 5rem;
 color: var(--white-color);
