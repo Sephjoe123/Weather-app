@@ -37,20 +37,38 @@ function getCurrentDateDetails() {
 function getLocationAndFetchWeatherData() {
   navigator.geolocation.getCurrentPosition(AccessedLocation);
 }
-
 function AccessedLocation(position) {
   if ("geolocation" in navigator) {
     lat = position.coords.latitude;
     long = position.coords.longitude;
     fetchWeatherData(lat, long);
+    
+    
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
+    getForecastDetailsFromApi(forecastUrl);
   } else {
     console.error("Geolocation is not supported");
   }
 }
 
+async function getForecastDetailsFromApi(forecastUrl) {
+  try {
+    const response = await fetch(forecastUrl);
+    if (!response.ok) {
+      throw new Error("Forecast data not available for this location");
+    }
+    const data = await response.json();
+    displayForecast(data); // Call the displayForecast function to show forecast data
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 function fetchWeatherData(lat, long) {
   const weatherByLocationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
   getWeatherDetailsFromApi(weatherByLocationUrl);
+  
 }
 
 async function getWeatherDetailsFromApi(weatherUrl) {
@@ -62,6 +80,7 @@ async function getWeatherDetailsFromApi(weatherUrl) {
     const data = await response.json();
     displayData(data);
     console.log(data);
+    
   } catch (error) {
     displayError(error);
     console.log(error);
@@ -172,7 +191,6 @@ function inputForecastData(data) {
     document.querySelector(`.temp${i + 1}`).innerText = parseFloat(uniqueTemperaturesArray[i] - 273).toFixed(1);
   }
 
-  console.log(uniqueTemperaturesArray)
 
   let icon1 = data[0].weather[0].icon;
   let icon2 = data[1].weather[0].icon;
