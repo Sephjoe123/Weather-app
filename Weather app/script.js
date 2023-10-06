@@ -73,7 +73,6 @@ function displayError(error) {
 }
 // Initial setup
 getCurrentDateDetails();
-getLocationAndFetchWeatherData();
 
 const handleKeyPress = async (e) => {
   const DetailsContainer = document.querySelector(".fetching-details");
