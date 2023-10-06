@@ -17,9 +17,6 @@ const daysOfTheWeek = [
   "Saturday",
 ];
 
-const apiKey = "d2ac27d2600f53d53f942008d727564f";
-let lat;
-let long;
 
 function getCurrentDateDetails() {
   const currentDate = new Date();
@@ -34,61 +31,8 @@ function getCurrentDateDetails() {
   const WeekDay = daysOfTheWeek[dayNumber];
 }
 
-function getLocationAndFetchWeatherData() {
-  navigator.geolocation.getCurrentPosition(AccessedLocation);
-}
-function AccessedLocation(position) {
-  if ("geolocation" in navigator) {
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
-    fetchWeatherData(lat, long);
-    
-    
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`;
-    getForecastDetailsFromApi(forecastUrl);
-  } else {
-    console.error("Geolocation is not supported");
-  }
-}
-
-async function getForecastDetailsFromApi(forecastUrl) {
-  try {
-    const response = await fetch(forecastUrl);
-    if (!response.ok) {
-      throw new Error("Forecast data not available for this location");
-    }
-    const data = await response.json();
-    displayForecast(data); // Call the displayForecast function to show forecast data
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
-function fetchWeatherData(lat, long) {
-  const weatherByLocationUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
-  getWeatherDetailsFromApi(weatherByLocationUrl);
-  
-}
-
-async function getWeatherDetailsFromApi(weatherUrl) {
-  try {
-    const response = await fetch(weatherUrl);
-    if (!response.ok) {
-      throw new Error("Weather data not available for this location");
-    }
-    const data = await response.json();
-    displayData(data);
-    console.log(data);
-    
-  } catch (error) {
-    displayError(error);
-    console.log(error);
-  }
-}
-
+// consuming data from api and displaying it on the document
 function displayData(data) {
-
   const cityName = document.querySelector(".city");
   cityName.innerText = data.name;
 
@@ -101,7 +45,7 @@ function displayData(data) {
 
   humidityElement.innerText = `${data.main.humidity}%`;
   WindSpeed.innerText = `${data.wind.speed}m/s`;
-  Pressure.innerText = `${data.main.pressure}pa`
+  Pressure.innerText = `${data.main.pressure}pa`;
 
   const weatherIcon = document.getElementById("weather-icon");
   const icon = data.weather[0].icon;
@@ -111,6 +55,7 @@ function displayData(data) {
   );
 }
 
+// displaying error when user is unable to access weather details
 function displayError(error) {
   const errorContainer = document.querySelector(".error-container");
   if (
@@ -148,20 +93,7 @@ const handleKeyPress = async (e) => {
 
 input.addEventListener("keypress", handleKeyPress);
 
-async function dailyForecast(WeatherForecast) {
-  try {
-    const response = await fetch(WeatherForecast);
-    if (!response.ok) {
-      throw new Error("Cannot access data in this location");
-    }
-    let data = await response.json();
-
-    displayForecast(data);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
+// getting unique 5 days forecast data 
 function displayForecast(data) {
   let dailyForecast;
   let DateArray = [];
@@ -175,7 +107,6 @@ function displayForecast(data) {
 }
 
 function inputForecastData(data) {
-  
   let DailyTempArr = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -186,11 +117,11 @@ function inputForecastData(data) {
   const uniqueTemperatures = new Set(DailyTempArr);
   const uniqueTemperaturesArray = Array.from(uniqueTemperatures);
 
-
-  for(let i = 0; i <= 3 ; i++){ 
-    document.querySelector(`.temp${i + 1}`).innerText = parseFloat(uniqueTemperaturesArray[i] - 273).toFixed(1);
+  for (let i = 0; i <= 3; i++) {
+    document.querySelector(`.temp${i + 1}`).innerText = parseFloat(
+      uniqueTemperaturesArray[i] - 273
+    ).toFixed(1);
   }
-
 
   let icon1 = data[0].weather[0].icon;
   let icon2 = data[1].weather[0].icon;
@@ -212,7 +143,8 @@ function inputForecastData(data) {
   document
     .querySelector(".weather-forecast-icon-3")
     .setAttribute("src", `https://openweathermap.org/img/wn/${icon4}@2x.png`);
-
+ 
+  
   let dayArray = [];
   for (let i = 0; i < data.length; i++) {
     const timestamp = data[i].dt * 1000;
