@@ -20,6 +20,8 @@ function getLocationAndFetchWeatherData() {
     }
   }
   
+  getLocationAndFetchWeatherData();
+  
   // Fetching current weather details
   async function getWeatherDetailsFromApi(weatherUrl) {
     try {
